@@ -1,3 +1,23 @@
+
+// function f(funcao){
+//     return funcao()
+// }
+
+// function g() {
+//     function outraFuncao(){
+//         console.log("Fui criada por g")
+//         function exibirA(){
+//             console.log("A")
+//             return () => console.log("B")
+//         }
+//         return exibirA
+//     }
+//     return outraFuncao
+// }
+
+// f(g())
+
+
 // function hello (){
 //     console.log('Oi')
 // }
@@ -38,20 +58,20 @@
 
 //arrow function
 
-const hello = () => console.log("Hello");
-hello();
+// const hello = () => console.log("Hello");
+// hello();
 
-const dobro = (valor) => valor *2;
-console.log(dobro(100))
+// const dobro = (valor) => valor *2;
+// console.log(dobro(100))
 
-const triplo = (valor) => {
-    return valor * 3
-}
+// const triplo = (valor) => {
+//     return valor * 3
+// }
 
-console.log(triplo(300))
+// console.log(triplo(300))
 
-// se abriu chaves precisa do return, sem ele devolve undefined
-const ehPar = (n) => {
-    return n % 2 === 0;
-}
-console.log(ehPar(10))
+// // se abriu chaves precisa do return, sem ele devolve undefined
+// const ehPar = (n) => {
+//     return n % 2 === 0;
+// }
+// console.log(ehPar(10))
