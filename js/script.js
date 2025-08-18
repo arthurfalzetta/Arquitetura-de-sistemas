@@ -1,26 +1,78 @@
+const fs = require('fs')
+const abrirArquivo = function(nomeArquivo){
+    const exibirConteudo = function(erro, conteudo) {
+        if(erro){
+            console.log(`Deu erro: ${erro}`)
+        }
+        else{
+            console.log(`Conteúdo: ${conteudo.toString()}`)
+            const dobro = Number(conteudo.toString()) * 2
+            const finalizar = function(erro){
+                if(erro){
+                    console.log(`Erro tentando salvar o dobro: ${erro}`)
+                }
+                else{
+                    console.log("Salvou o dobro com sucesso")
+                }
+            }
+            fs.writeFile('dobro.txt', dobro.toString(), finalizar)
+            const triplo = Number(conteudo.toString()) * 3
+            const finalizar2 = function(erro){
+                if(erro){
+                    console.log(`Erro ao salvar o triplo: ${erro}`)
+                }
+                else{
+                    console.log(`Salvou o triplo com sucesso`)
+                }
+            }
+            fs.writeFile('triplo.txt', triplo.toString(), finalizar2)
+        }
+    }
+    fs.readFile(nomeArquivo, exibirConteudo)
+    console.log('Continuando...')
+}
+abrirArquivo('arquivo.txt')
+
+// function demorada(){
+//     const atualMais2Segundos = new Date().getTime() + 2000;
+//     while (new Date().getTime() <= atualMais2Segundos);
+//     const d = 8 + 4;
+//     return d;
+// }
+
+// const a = 2 + 5;
+// const b = 5 + 9;
+// setTimeout(() => {
+//     const d = demorada()
+//     console.log(`d: ${d}`)
+// }, 500)
+// const e = 2 + a + b;
+// console.log(`e: ${e}`);
+
+
 //comparação
 // == compara os valores, caso sejam tipos diferentes acontece a coerção implícita
 // === true se os valores e tipos forem iguais
-console.log(1 == 1)// true
-console.log(1 == '1')//true
-console.log(1 === 1)//true
-console.log(1 === '1')//false
-console.log (true == 1) //true
-console.log (1 == [1])//true
-console.log (null == null)//true
-console.log (null == undefined)//true
-console.log([] == false)//true
-console.log ([] == [])//false
+// console.log(1 == 1)// true
+// console.log(1 == '1')//true
+// console.log(1 === 1)//true
+// console.log(1 === '1')//false
+// console.log (true == 1) //true
+// console.log (1 == [1])//true
+// console.log (null == null)//true
+// console.log (null == undefined)//true
+// console.log([] == false)//true
+// console.log ([] == [])//false
 
 //aqui não ocorre o casting, compara objetos
-console.log([1] == [1])//false
+// console.log([1] == [1])//false
 
 //aqui ocorre coerção, compara os valores
-console.log( 1 == [1])//true
+// console.log( 1 == [1])//true
 
-a1 = [1]
-a2 = a1
-console.log(a1 === a2) // para conseguir fazer console.log([1] === [1]) sem dar problema
+// a1 = [1]
+// a2 = a1
+// console.log(a1 === a2) // para conseguir fazer console.log([1] === [1]) sem dar problema
 
 //coerção
 // const n1 = 2;
