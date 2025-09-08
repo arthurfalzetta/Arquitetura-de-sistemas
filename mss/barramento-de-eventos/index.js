@@ -8,7 +8,9 @@ app.post('/eventos', (req, res) => {
     //enviar para o mss de lembretes
     axios.post('http://localhost:4000/eventos', evento)
     //enviar para observacoes
-    axios.post('htttp//localhost:5000/eventos', evento)
+    axios.post('htttp://localhost:5000/eventos', evento)
+    //enviar para consulta
+    axios.post('htttp://localhost:6000/eventos', evento)
     res.status(200).send({msg:"ok"})
 })
 
