@@ -6,7 +6,7 @@ const palavraChave = "importante";
 const funcoes = {
   ObservacaoCriada: (observacao) => {
     observacao.status = observacao.texto.includes(palavrachave)
-      ? "importando"
+      ? "importante"
       : "comum";
     axios.post("http://localhost:10000/eventos", {
       tipo: "ObservacaoClassificada",
