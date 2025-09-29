@@ -12,6 +12,8 @@ const funcoes = {
     const observacoes = observacoesPorLembreteId[observacao.lembreteId];
     const obsParaAtualizar = observacoes.find((o) => o.id === observacao.id);
     obsParaAtualizar.status = observacao.status;
+    //emitir evento do tipo ObservacaoAtualizad
+
     axios.post("http://localhost:10000/eventos", {
       tipo: "ObservacaoAtualizada",
       dados: {
@@ -44,9 +46,8 @@ app.post("/lembretes/:id/observacoes", async (req, res) => {
 });
 
 app.post("/eventos", (req, res) => {
-  try {
-    funcoes[req.body.tipo](req.body.dados);
-  } catch (err) {}
+  console.log(req.body)
+  funcoes[req.body.tipo](req.body.dados);
   res.status(200).send({ msg: "ok" });
 });
 
