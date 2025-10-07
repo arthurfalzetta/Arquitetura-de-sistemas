@@ -1,40 +1,67 @@
+const express = require('express')
+const app = express()
+app.use(express.json())
 const axios = require("axios");
-const bodyParser = require("body-parser");
-const express = require("express");
-const app = express();
-app.use(bodyParser.json());
-const lembretes = {};
-contador = 0;
+const lembretes = {}
+let contador = 0
+/*
+{
+  1: {
+    contador: 1,
+    texto: 'Fazer café'
+  }
+}
+[
+  {
+    contador: 1,
+    texto: 'Fazer café
+  }
+]
+*/
 //para obter todos os lembretes
 //GET /lembretes
-app.get("/lembretes", (req, res) => {
-  res.send(lembretes);
-});
+
+contador = 0;
+
+
+app.get('/lembretes', (req, res) => {
+  res.send(lembretes)    
+})
 //para cadastrar novo lembretes
 //POST /lembretes {"texto": "Fazer café"}
 app.post("/lembretes", async (req, res) => {
-  contador++;
-  const texto = req.body;
-  lembretes[contador] = {
-    contador,
-    texto,
-  };
+  //incrementar o contador
+  contador++
+  //extrair a propriedade texto do corpo da requisição
+  const { texto } = req.body
+  //construir um objeto com contador e texto
+  const lembrete = {
+    contador, 
+    texto
+  }
+  //cadastrar esse objeto na base da forma descrita
+  lembretes [contador] = lembrete
+  //responder ao cliente, enviando o lembrete criado e dizendo que o código de status é 201
   await axios.post("http://localhost:10000/eventos", {
     tipo: "LembreteCriado",
     dados: {
       contador,
-      texto,
-    },
+      texto
+    }
   });
-  res.status(201).send(lembretes[contador]);
-});
+
+  res.status(201).send(lembretes[contador])
+})
 
 app.post("/eventos", (req, res) => {
-  console.log(req.body);
+  try{
+    console.log(req.body);
+  }
+  catch(err){}
   res.status(200).send({ msg: "ok" });
 });
 
-const port = 4000;
+const port = 4000
 app.listen(port, () => {
-  console.log(`Lembretes. Porta ${port}.`);
-});
+  console.log(`Lembretes. Porta ${port}.`)
+})
